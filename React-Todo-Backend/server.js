@@ -1,8 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
+import todoRoutes from "./src/routes/todos.js";
 import cors from "cors";
-require("dotenv").config();
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
 
 // Middleware
@@ -16,7 +18,6 @@ mongoose
   .catch((err) => console.error("❌ MongoDB Connection Error:", err));
 
 // Routes
-const todoRoutes = require("./routes/todos");
 app.use("/api/todos", todoRoutes);
 
 // Start Server
