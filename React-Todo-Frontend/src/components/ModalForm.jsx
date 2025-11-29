@@ -1,9 +1,34 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const ModalForm = ({ isOpen, onClose, initialTitle, initialDescription }) => {
+const ModalForm = ({
+  isOpen,
+  onClose,
+  initialTitle,
+  initialDescription,
+  onFormSubmit,
+}) => {
   // Local states for title and description which will be pre-filled in case of editing
-  const [title, setTitle] = useState(initialTitle);
-  const [description, setDescription] = useState(initialDescription);
+  const [title, setTitle] = useState(initialTitle || "");
+  const [description, setDescription] = useState(initialDescription || "");
+  const inputRef = useRef(null);
+
+  // Focus input when modal opens
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isOpen]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const trimmedTitle = title.trim();
+    const trimmedDescription = description.trim();
+
+    if (!trimmedTitle || !trimmedDescription) return; // Prevent submission if either field is empty
+    onFormSubmit(trimmedTitle, trimmedDescription);
+    setTitle("");
+    setDescription("");
+  };
 
   // If modal is not open, don't render anything, if open render the modal
   if (!isOpen) return null;
@@ -14,17 +39,22 @@ const ModalForm = ({ isOpen, onClose, initialTitle, initialDescription }) => {
         <div className="mb-4 text-center">
           {" "}
           <h2 className="text-xl font-semibold mb-4">
-            {/* Add / Edit Todo */} Create Your Todo
+            {/* Add / Edit Todo */}
+            {initialTitle ? "Edit Your Todo" : "Create Your Todo"}
           </h2>
         </div>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
-            type="text"
+            ref={inputRef}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             className="border border-gray-300 rounded px-3 py-2 mb-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter Title..."
           />
           <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             className="border border-gray-300 rounded px-3 py-2 mb-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter Description..."
           ></textarea>
@@ -44,7 +74,7 @@ const ModalForm = ({ isOpen, onClose, initialTitle, initialDescription }) => {
               type="submit"
               className="bg-blue-500 text-white px-4 py-2 rounded-2xl hover:bg-blue-600 disabled:opacity-50 font-semibold"
             >
-              Add Todo
+              {initialTitle ? "Update Todo" : "Add Todo"}
             </button>
           </div>
         </form>
