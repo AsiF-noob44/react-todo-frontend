@@ -60,17 +60,22 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-        <div className="max-w-5xl mx-auto">
+      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-8 px-4">
+        <div className="max-w-4xl mx-auto">
           {/* Title & Submit Button */}
 
-          <div className="text-center ">
-            <h1 className="text-3xl font-bold my-5">Todo App</h1>
+          <div className="text-center mb-8">
+            <h1 className="text-5xl font-bold text-gray-800 mb-2">
+              📝 Todo App
+            </h1>
+            <p className="text-gray-600 mb-6">
+              Organize your tasks efficiently
+            </p>
             <button
               onClick={openAddModal}
-              className="px-4 py-2 my-4 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600  "
+              className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all"
             >
-              Create Todo
+              + Create Todo
             </button>
           </div>
           {/* End of Title & Submit Button */}

@@ -19,6 +19,18 @@ const ModalForm = ({
     }
   }, [isOpen]);
 
+  // Close modal on Escape key press
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape" && isOpen) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isOpen, onClose]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const trimmedTitle = title.trim();
@@ -34,8 +46,14 @@ const ModalForm = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/50">
-      <div className="bg-white rounded-xl w-full max-w-md p-6 shadow-lg">
+    <div
+      className="fixed inset-0 flex items-center justify-center bg-black/50"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-xl w-full max-w-md p-6 shadow-lg"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="mb-4 text-center">
           {" "}
           <h2 className="text-xl font-semibold mb-4">
