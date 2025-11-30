@@ -16,7 +16,7 @@ const TodoList = ({ todos, onEdit, onDelete }) => {
     <div className="mt-4 space-y-3">
       {todos.map((todo) => (
         <TodoItem
-          key={todo.id}
+          key={todo._id}
           todo={todo}
           onEdit={onEdit}
           onDelete={onDelete}

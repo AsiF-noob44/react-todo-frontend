@@ -9,8 +9,13 @@ const TodoItem = ({ todo, onEdit, onDelete }) => {
         </h3>
         <p className="text-gray-600 mb-2">{todo.description}</p>
         <p className="text-xs text-gray-400">
-          {new Date(todo.createdAt).toLocaleString()}
+          Created: {new Date(todo.createdAt).toLocaleString()}
         </p>
+        {todo.updatedAt && todo.createdAt !== todo.updatedAt && (
+          <p className="text-xs text-gray-400 mt-1">
+            Updated: {new Date(todo.updatedAt).toLocaleString()}
+          </p>
+        )}
       </div>
       <div className="flex gap-2 ml-4">
         <button
@@ -21,7 +26,7 @@ const TodoItem = ({ todo, onEdit, onDelete }) => {
         </button>
 
         <button
-          onClick={() => onDelete(todo.id)}
+          onClick={() => onDelete(todo._id)}
           className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
         >
           <MdDeleteForever size={20} />
