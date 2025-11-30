@@ -1,11 +1,8 @@
 [build]
-  # Base directory where package.json is located
-  base = "React-Todo-Frontend"
-  
   # Build command
   command = "npm run build"
   
-  # Directory with your build output (relative to base)
+  # Directory with your build output
   publish = "dist"
 
 # Redirect all requests to index.html for SPA routing
