@@ -2,7 +2,7 @@
 
 A modern Todo application built with React, Vite, and Tailwind CSS.
 
-🚀 **Live Demo**: [https://todo-frontui.netlify.app/](https://todo-frontui.netlify.app/)
+🚀 **Live**: [https://todo-frontui.netlify.app/](https://todo-frontui.netlify.app/)
 
 ## Features
 
