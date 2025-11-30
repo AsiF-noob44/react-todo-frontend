@@ -11,5 +11,5 @@
   to = "/index.html"
   status = 200
 
-# Environment variables hint (set these in Netlify dashboard)
+# Environment variables
 # VITE_API_URL = "https://your-backend.onrender.com/api/todos"
