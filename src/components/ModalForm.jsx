@@ -45,13 +45,14 @@ const ModalForm = ({
     // Set submitting state to prevent duplicate submissions
     setIsSubmitting(true);
 
-    // Call the parent's submit handler
-    Promise.resolve(onFormSubmit(trimmedTitle, trimmedDescription))
-      .finally(() => {
+    // Calling the parent's submit handler
+    Promise.resolve(onFormSubmit(trimmedTitle, trimmedDescription)).finally(
+      () => {
         setIsSubmitting(false);
         setTitle("");
         setDescription("");
-      });
+      }
+    );
   };
 
   // If modal is not open, don't render anything, if open render the modal
