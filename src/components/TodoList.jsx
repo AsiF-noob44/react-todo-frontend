@@ -13,17 +13,27 @@ const TodoList = ({ todos, todoCount, onEdit, onDelete }) => {
     );
   }
   return (
-    <div className="mt-4 space-y-3">
-      {todos.map((todo, index) => (
-        <TodoItem
-          key={todo._id}
-          todo={todo}
-          todoCount={todoCount}
-          todoIndex={index + 1}
-          onEdit={onEdit}
-          onDelete={onDelete}
-        />
-      ))}
+    <div className="mt-4">
+      {/* Total Todos Counter */}
+      <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+        <p className="text-sm font-semibold text-blue-700">
+          📊 Total Todos: <span className="text-lg">{todoCount}</span>
+        </p>
+      </div>
+
+      {/* Todo Items */}
+      <div className="space-y-3">
+        {todos.map((todo, index) => (
+          <TodoItem
+            key={todo._id}
+            todo={todo}
+            todoCount={todoCount}
+            todoIndex={index + 1}
+            onEdit={onEdit}
+            onDelete={onDelete}
+          />
+        ))}
+      </div>
     </div>
   );
 };
