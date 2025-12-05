@@ -10,6 +10,7 @@ const ModalForm = ({
   // Local states for title and description which will be pre-filled in case of editing
   const [title, setTitle] = useState(initialTitle || "");
   const [description, setDescription] = useState(initialDescription || "");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const inputRef = useRef(null);
 
   // Focus input when modal opens
@@ -36,10 +37,21 @@ const ModalForm = ({
     const trimmedTitle = title.trim();
     const trimmedDescription = description.trim();
 
-    if (!trimmedTitle || !trimmedDescription) return; // Prevent submission if either field is empty
-    onFormSubmit(trimmedTitle, trimmedDescription);
-    setTitle("");
-    setDescription("");
+    if (!trimmedTitle || !trimmedDescription) {
+      alert("Title and description are required.");
+      return;
+    }
+
+    // Set submitting state to prevent duplicate submissions
+    setIsSubmitting(true);
+
+    // Call the parent's submit handler
+    Promise.resolve(onFormSubmit(trimmedTitle, trimmedDescription))
+      .finally(() => {
+        setIsSubmitting(false);
+        setTitle("");
+        setDescription("");
+      });
   };
 
   // If modal is not open, don't render anything, if open render the modal
@@ -90,9 +102,14 @@ const ModalForm = ({
             {/* Submit Button */}
             <button
               type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded-2xl hover:bg-blue-600 disabled:opacity-50 font-semibold"
+              disabled={!title.trim() || !description.trim() || isSubmitting}
+              className="bg-blue-500 text-white px-4 py-2 rounded-2xl hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
             >
-              {initialTitle ? "Update Todo" : "Add Todo"}
+              {isSubmitting
+                ? "Submitting..."
+                : initialTitle
+                ? "Update Todo"
+                : "Add Todo"}
             </button>
           </div>
         </form>
