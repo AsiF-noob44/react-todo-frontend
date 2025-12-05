@@ -15,9 +15,12 @@ const TodoList = ({ todos, todoCount, onEdit, onDelete }) => {
   return (
     <div className="mt-4">
       {/* Total Todos Counter */}
-      <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-        <p className="text-sm font-semibold text-blue-700">
-          📊 Total Todos: <span className="text-lg">{todoCount}</span>
+      <div className="mb-4 p-4 bg-linear-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg shadow-sm">
+        <p className="text-sm font-semibold text-gray-700">
+          <span className="text-blue-600">📊 Total Todos:</span>
+          <span className="ml-2 inline-flex items-center justify-center w-8 h-8 rounded-full bg-linear-to-br from-blue-500 to-blue-600 text-white font-bold text-lg">
+            {todoCount}
+          </span>
         </p>
       </div>
 
