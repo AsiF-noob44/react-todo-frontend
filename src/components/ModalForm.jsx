@@ -37,10 +37,7 @@ const ModalForm = ({
     const trimmedTitle = title.trim();
     const trimmedDescription = description.trim();
 
-    if (!trimmedTitle || !trimmedDescription) {
-      alert("Title and description are required.");
-      return;
-    }
+    if (!trimmedTitle || !trimmedDescription) return;
 
     // Set submitting state to prevent duplicate submissions
     setIsSubmitting(true);
