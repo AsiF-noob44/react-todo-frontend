@@ -68,6 +68,7 @@ function App() {
 
       if (result.success) {
         setTodos((prev) => [result.data, ...prev]);
+        setTodoCount((prev) => prev + 1);
         setIsModalOpen(false);
       } else {
         alert(result.message || "Failed to create todo");
@@ -127,6 +128,7 @@ function App() {
 
         if (result.success) {
           setTodos((prev) => prev.filter((todo) => todo._id !== id));
+          setTodoCount((prev) => Math.max(0, prev - 1));
         } else {
           alert(result.message || "Failed to delete todo");
         }
