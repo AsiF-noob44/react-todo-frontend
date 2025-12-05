@@ -30,7 +30,6 @@ const TodoList = ({ todos, todoCount, onEdit, onDelete }) => {
           <TodoItem
             key={todo._id}
             todo={todo}
-            todoCount={todoCount}
             todoIndex={index + 1}
             onEdit={onEdit}
             onDelete={onDelete}

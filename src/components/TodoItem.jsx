@@ -1,14 +1,11 @@
 import { MdEdit } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
-const TodoItem = ({ todo, todoCount, todoIndex, onEdit, onDelete }) => {
+const TodoItem = ({ todo, todoIndex, onEdit, onDelete }) => {
   return (
     <div className="flex items-start justify-between p-4 rounded-lg mb-3 bg-white shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-linear-to-br from-blue-500 to-blue-600 text-white font-bold text-sm shadow-sm">
           {todoIndex}
-        </div>
-        <div className="text-xs text-gray-500 font-medium">
-          of {todoCount}
         </div>
       </div>
       <div className="flex-1">
