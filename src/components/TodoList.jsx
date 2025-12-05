@@ -1,6 +1,6 @@
 import TodoItem from "./TodoItem";
 
-const TodoList = ({ todos, onEdit, onDelete }) => {
+const TodoList = ({ todos, todoCount, onEdit, onDelete }) => {
   if (!todos || todos.length === 0) {
     return (
       <div className="text-center bg-white rounded-xl shadow-md p-12 mt-4">
@@ -14,10 +14,12 @@ const TodoList = ({ todos, onEdit, onDelete }) => {
   }
   return (
     <div className="mt-4 space-y-3">
-      {todos.map((todo) => (
+      {todos.map((todo, index) => (
         <TodoItem
           key={todo._id}
           todo={todo}
+          todoCount={todoCount}
+          todoIndex={index + 1}
           onEdit={onEdit}
           onDelete={onDelete}
         />

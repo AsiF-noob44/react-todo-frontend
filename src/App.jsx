@@ -14,6 +14,7 @@ function App() {
   */
 
   const [todos, setTodos] = useState([]);
+  const [todoCount, setTodoCount] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingTab, setEditingTab] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -34,6 +35,7 @@ function App() {
 
       if (result.success) {
         setTodos(result.data);
+        setTodoCount(result.count || result.data.length);
       } else {
         setError("Failed to fetch todos");
       }
@@ -171,6 +173,7 @@ function App() {
           ) : (
             <TodoList
               todos={todos}
+              todoCount={todoCount}
               onEdit={openEditModal}
               onDelete={handleDeleteTodo}
             />
