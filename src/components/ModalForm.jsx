@@ -20,7 +20,7 @@ const ModalForm = ({
     }
   }, [isOpen]);
 
-  // Close modal on Escape key press
+  // Close modal on Escape key press and cleanup event listener so it doesn't pile up on re-renders.
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape" && isOpen) {
@@ -56,13 +56,15 @@ const ModalForm = ({
   if (!isOpen) return null;
 
   return (
+    // Full screen overlay
     <div
       className="fixed inset-0 flex items-center justify-center bg-black/50"
-      onClick={onClose}
+      onClick={onClose} // Close modal when clicking outside the modal content
     >
+      {/* Modal Content */}
       <div
         className="bg-white rounded-xl w-full max-w-md p-6 shadow-lg"
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
       >
         <div className="mb-4 text-center">
           {" "}
